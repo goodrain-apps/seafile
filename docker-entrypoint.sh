@@ -3,12 +3,12 @@
 
 echo "now install sea file server, first wait for db config"
 sleep 10
-host_name=$(hostname)
-export SERVER_NAME=${SERVER_NAME:-'127.0.0.1:5000'}
-if [[ "${SERVER_NAME}" == "127.0.0.1:5000" ]]; then
-    echo "you donot set SERVER_NAME, then upload or download file may be failed!"
+export PORT=${PORT:-5000}
+export SERVER_NAME=${SERVER_NAME:-'seafile'}
+export SERVER_IP=${DOMAIN:-"127.0.0.1:${PORT}"}
+if [[ "${SERVER_NAME}" == "127.0.0.1:${PORT}" ]]; then
+    echo "you donot set SERVER_IP, then upload or download file may be failed!"
 fi
-export SERVER_IP=${DOMAIN:-'127.0.0.1'}
 export SEAFILE_DIR=/data/seafile-data
 export USE_EXISTING_DB=0
 export FILESERVER_PORT=8082
@@ -37,7 +37,7 @@ if [[ ! -z "${MYSQL_HOST}" ]]; then
 fi
 
 # ngx outer port
-export PORT=${PORT:-5000}
+
 export TOP_PATH=${TOP_PATH:-'/app/haiwen'}
 # re init ?
 export RESET=${RESET:-0}
@@ -82,7 +82,7 @@ if [[ ! -d /data/ccnet ]]; then
     sed -i -e "s|:8000|:${PORT}|" ${TOP_PATH}/conf/ccnet.conf
     # 添加FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
     if ! cat ${TOP_PATH}/conf/seahub_settings.py | grep FILE_SERVER_ROOT ; then
-        echo "FILE_SERVER_ROOT = 'http://${SERVER_NAME}/seafhttp'" >> ${TOP_PATH}/conf/seahub_settings.py
+        echo "FILE_SERVER_ROOT = 'http://${SERVER_IP}/seafhttp'" >> ${TOP_PATH}/conf/seahub_settings.py
     fi
     cp -r ${TOP_PATH}/seahub-data/avatars /data/
 else
