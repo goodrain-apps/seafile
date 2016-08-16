@@ -5,8 +5,8 @@ echo "now install sea file server, first wait for db config"
 sleep 10
 export PORT=${PORT:-5000}
 export SERVER_NAME=${SERVER_NAME:-'seafile'}
-export SERVER_IP=${DOMAIN:-"127.0.0.1:${PORT}"}
-if [[ "${SERVER_NAME}" == "127.0.0.1:${PORT}" ]]; then
+export SERVER_IP=${DOMAIN:-"127.0.0.1"}
+if [[ "${SERVER_IP}" == "127.0.0.1" ]]; then
     echo "you donot set SERVER_IP, then upload or download file may be failed!"
 fi
 export SEAFILE_DIR=/data/seafile-data
