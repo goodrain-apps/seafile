@@ -1,0 +1,10 @@
+*/1 * * * * root cp /app/haiwen/ccnet/mykey.peer /data/ccnet/mykey.peer
+*/1 * * * * root cp /app/haiwen/ccnet/seafile.ini /data/ccnet/seafile.ini
+
+*/1 * * * * root cp /app/haiwen/conf/ccnet.conf /data/conf/ccnet.conf
+*/1 * * * * root cp /app/haiwen/conf/seafdav.conf /data/conf/seafdav.conf
+*/1 * * * * root cp /app/haiwen/conf/seafile.conf /data/conf/seafile.conf
+*/1 * * * * root cp /app/haiwen/conf/seahub_settings.py /data/conf/seahub_settings.py
+
+*/1 * * * * root cp -r /app/haiwen/seahub-data/avatars /data/
+
