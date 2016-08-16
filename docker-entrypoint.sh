@@ -61,8 +61,8 @@ EOF
 fi
 
 # 初始化admin
-export SEAFILE_USER=${SEAFILE_USER:-'admin@seafile.com'}
-export SEAFILE_PASS=${SEAFILE_PASS:-'admin@seafile'}
+export SEAFILE_USER=${SEAFILE_USER:-'admin@goodrain.com'}
+export SEAFILE_PASS=${SEAFILE_PASS:-'admin@goodrain'}
 export INSTALLPATH=${INSTALLPATH:-'/app/haiwen/seafile-server-5.1.3'}
 export PYTHONPATH=${INSTALLPATH}/seafile/lib/python2.6/site-packages:${INSTALLPATH}/seafile/lib64/python2.6/site-packages:${INSTALLPATH}/seahub:${INSTALLPATH}/seahub/thirdpart:$PYTHONPATH
 export PYTHONPATH=${INSTALLPATH}/seafile/lib/python2.7/site-packages:${INSTALLPATH}/seafile/lib64/python2.7/site-packages:$PYTHONPATH
