@@ -27,12 +27,9 @@
     MYSQL_HOST
         mysql数据库的ip地址
     MYSQL_USER
-        mysql的用户,默认为root
+        mysql的用户,默认为root。必须有管理员权限
     MYSQL_PASS
         mysql用户的密码
-    MYSQL_ROOT_PASSWD
-        mysql的root密码, 主要适用于初始化时创建用户。要求root用户可以远程访问
-        MYSQL_USER=管理员, 该参数可忽略
     MYSQL_PORT
         mysql的端口号
 

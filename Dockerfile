@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER lucienchu<lucienchu@hotmail.com>
 
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata \
-#    && sed -Ei '1,$s/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/cn.archive.ubuntu.com\/ubuntu\//g' /etc/apt/sources.list \
+    && sed -Ei '1,$s/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/cn.archive.ubuntu.com\/ubuntu\//g' /etc/apt/sources.list \
     && apt-get update -q \
     && apt-get upgrade -y \
     && apt-get install -y python2.7 \

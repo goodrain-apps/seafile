@@ -76,6 +76,14 @@ if [[ ! -d /data/ccnet ]]; then
     mkdir -p /data/conf
     mkdir -p /data/avatars
     cd ${INSTALLPATH}
+    #
+    if [[ "${MYSQL_USER}" == "root" ]]; then
+        export MYSQL_ROOT_PASSWD=${MYSQL_ROOT_PASSWD:-${MYSQL_PASS}}
+    else
+        # 屏蔽setup-seafile-mysql.py中密码校验
+        sed -i "559s/'root'/\"${MYSQL_USER}\"/" ${INSTALLPATH}/setup-seafile-mysql.py
+    fi
+
     python setup-seafile-mysql.py auto -e 0
 
     # 修改8000-->5000
