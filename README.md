@@ -1,6 +1,8 @@
 # seafile
 社区版seafile, 版本5.1.3
 
+## 数据:
+    持久化目录: /data
 
 ## 参数:
     SERVER_NAME
@@ -34,6 +36,7 @@
     MYSQL_PORT
         mysql的端口号
 
+    docker run -p 5000:5000 -v /data:/data --link mysql:mysql seafile 
 
 ## 官网:
     https://www.seafile.com/home/

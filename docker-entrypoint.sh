@@ -4,8 +4,8 @@
 echo "now install sea file server, first wait for db config"
 sleep 10
 host_name=$(hostname)
-export SERVER_NAME=${SERVER_NAME:-${host_name}}
-if [[ ${SERVER_NAME} == ${host_name} ]]; then
+export SERVER_NAME=${SERVER_NAME:-'127.0.0.1:5000'}
+if [[ "${SERVER_NAME}" == "127.0.0.1:5000" ]]; then
     echo "you donot set SERVER_NAME, then upload or download file may be failed!"
 fi
 export SERVER_IP=${DOMAIN:-'127.0.0.1'}
