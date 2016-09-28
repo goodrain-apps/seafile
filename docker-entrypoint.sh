@@ -48,6 +48,10 @@ do
     echo "Waiting mysql service ${wait} seconds"
     sleep 1
 done
+if [ "${wait}" =  ${MAXWAIT} ]; then
+    echo >&2 'seafile start failed,please ensure mysql service has started.'
+    exit 1
+fi
 
 # ngx outer port
 
