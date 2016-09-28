@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-
 echo "now install sea file server, first wait for db config"
 sleep 10
+
 export PORT=${PORT:-5000}
 export SERVER_NAME=${SERVER_NAME:-'seafile'}
-export SERVER_IP=${DOMAIN:-"127.0.0.1"}
-if [[ "${SERVER_IP}" == "127.0.0.1" ]]; then
-    echo "you donot set SERVER_IP, then upload or download file may be failed!"
+export TRUSTED_DOMAIN=${TRUSTED_DOMAIN:-"127.0.0.1"}
+if [[ "${TRUSTED_DOMAIN}" == "127.0.0.1" ]]; then
+    echo "you donot set TRUSTED_DOMAIN, then upload or download file may be failed!"
 fi
 export SEAFILE_DIR=/data/seafile-data
 export USE_EXISTING_DB=0
@@ -35,6 +35,19 @@ if [[ ! -z "${MYSQL_HOST}" ]]; then
     fi
     export MYSQL_USER_HOST='%'
 fi
+
+MAXWAIT=${MAXWAIT:-30}
+wait=0
+while [ ${wait} -lt ${MAXWAIT} ]
+do
+    echo stat | nc ${MYSQL_HOST} ${MYSQL_PORT}
+    if [ $? -eq 0 ];then
+        break
+    fi
+    wait=`expr ${wait} + 1`;
+    echo "Waiting zookeeper service ${wait} seconds"
+    sleep 1
+done
 
 # ngx outer port
 
@@ -90,7 +103,7 @@ if [[ ! -d /data/ccnet ]]; then
     sed -i -e "s|:8000|:${PORT}|" ${TOP_PATH}/conf/ccnet.conf
     # 添加FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
     if ! cat ${TOP_PATH}/conf/seahub_settings.py | grep FILE_SERVER_ROOT ; then
-        echo "FILE_SERVER_ROOT = 'http://${SERVER_IP}/seafhttp'" >> ${TOP_PATH}/conf/seahub_settings.py
+        echo "FILE_SERVER_ROOT = 'http://${TRUSTED_DOMAIN}/seafhttp'" >> ${TOP_PATH}/conf/seahub_settings.py
     fi
     cp -r ${TOP_PATH}/seahub-data/avatars /data/
 else
