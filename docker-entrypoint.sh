@@ -45,7 +45,7 @@ do
         break
     fi
     wait=`expr ${wait} + 1`;
-    echo "Waiting zookeeper service ${wait} seconds"
+    echo "Waiting mysql service ${wait} seconds"
     sleep 1
 done
 
