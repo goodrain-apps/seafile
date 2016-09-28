@@ -129,11 +129,13 @@ else
 fi
 
 # 修改nginx端口
+echo "config nginx..."
 sed -i -e "s|{{PORT}}|${PORT}|" /app/seafile.conf
 
 mv /app/seafile.conf /etc/nginx/sites-available
 ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/
 
+echo "now start service..."
 if [[ $1 == "bash" ]]; then
     /bin/bash
 else

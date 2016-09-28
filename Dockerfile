@@ -29,9 +29,9 @@ RUN curl 'http://download-cn.seafile.com/seafile-server_5.1.3_x86-64.tar.gz' -o 
     && cd haiwen/installed \
     && tar -zxvf seafile-server_5.1.3_x86-64.tar.gz -C /app/haiwen
 
-COPY docker-entrypoint.sh /app
+COPY docker-entrypoint.sh /usr/local/bin/
 COPY check_admin.py /app
 COPY seafile.conf /app
 COPY crontab /etc/cron.d/
 
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
